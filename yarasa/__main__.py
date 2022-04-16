@@ -144,27 +144,23 @@ if __name__ == "__main__":
     except:
         hata(LANG['ERROR_DYNO'])
         exit(1)
-
+        
     basarili(LANG['OPENED_DYNO'])
     basarili(LANG['SUCCESS_DEPLOY'])
+    KanalId = loop.run_until_complete(botlog(stri, aid, ahash))
+    config['BOTLOG'] = "True"
+    config['BOTLOG_CHATID'] = KanalId
+    BotLog = True
+    basarili(LANG['OPENED_BOTLOG'])
     tamamlandi(time() - baslangic)
 
     Sonra = Confirm.ask(f"[bold yellow]{LANG['AFTERDEPLOY']}[/]", default=True)
     if Sonra == True:
         BotLog = False
         Cevap = ""
-        while not Cevap == "4":
+        while not Cevap == "2":
             if Cevap == "1":
-                bilgi(LANG['OPENING_BOTLOG'])
-
-                KanalId = loop.run_until_complete(botlog(stri, aid, ahash))
-                config['BOTLOG'] = "True"
-                config['BOTLOG_CHATID'] = KanalId
-
-                basarili(LANG['OPENED_BOTLOG'])
-                BotLog = True
-            elif Cevap == "3":
-                if BotLog:
+                if Botlog:
                     config['LOGSPAMMER'] = "True"
                     basarili(LANG['SUCCESS_LOG'])
                 else:
@@ -173,7 +169,7 @@ if __name__ == "__main__":
                 config['OTOMATIK_KATILMA'] = "False"
                 basarili(LANG['SUCCESS_SUP'])
             
-            bilgi(f"\[1] {LANG['BOTLOG']}\n\[2] {LANG['NO_SUP']}\n\[3] {LANG['NO_LOG']}\n\[4] {LANG['CLOSE']}")
+            bilgi(f"\[1] {LANG['NO_LOG']}\n\[4] {LANG['CLOSE']}")
             
             Cevap = Prompt.ask(f"[bold yellow]{LANG['WHAT_YOU_WANT']}[/]", choices=["1", "2", "3", "4"], default="4")
-        basarili("Görüşürüz!")
+        basarili("Görüşərik qaqulya. :)")
