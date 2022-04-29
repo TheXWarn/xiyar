@@ -22,7 +22,7 @@ def connect (api):
     return heroku_conn
 
 def createApp (connect):
-    appname = "yarasa" + str(time() * 1000)[-4:].replace(".", "") + str(random.randint(0,500))
+    appname = "neon" + str(time() * 1000)[-4:].replace(".", "") + str(random.randint(0,500))
     try:
         connect.create_app(name=appname, stack_id_or_name='container', region_id_or_name="eu")
     except requests.exceptions.HTTPError:
@@ -56,13 +56,13 @@ async def botlog (String, Api, Hash):
     await Client.start()
 
     KanalId = await Client(CreateChannelRequest(
-        title='YarasaUserBot BotLog',
+        title='N Σ O N',
         about=LANG['AUTO_BOTLOG'],
         megagroup=True
     ))
     KanalId = KanalId.chats[0].id
 
-    Photo = await Client.upload_file(file='yarasa.jpg')
+    Photo = await Client.upload_file(file='neon.jpg')
     await Client(EditPhotoRequest(channel=KanalId, 
         photo=Photo))
     msg = await Client.send_message(KanalId, LANG['DONT_LEAVE'])
